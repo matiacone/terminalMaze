@@ -6,6 +6,9 @@ const hole = 'O';
 const fieldCharacter = '░';
 const pathCharacter = '*';
 
+const FIELD_SIZE = 10
+const DIFFICULTY_PERCENT = .3
+
 class Field {
     constructor(field) {
         this.field = field
@@ -24,7 +27,7 @@ class Field {
     playAgain() {
         const play = prompt('Do you want to play again? (y/n): ')
         if (play.toLowerCase() === 'y') {
-            const nextGame = Field.generateField(10, .1)
+            const nextGame = Field.generateField(FIELD_SIZE, DIFFICULTY_PERCENT)
             nextGame.movePlayer(true)
         } else {
             console.log('Thanks for playing!')
@@ -80,6 +83,7 @@ class Field {
             //check if backwards
             let backwards = this.checkForCharacter(direction, pathCharacter);
             if (backwards) {
+                console.log('You\'re going backwards!')
                 continue;
             }
 
@@ -165,7 +169,7 @@ class Field {
 
 }
 
-const newGame = Field.generateField(10, .1)
+const newGame = Field.generateField(FIELD_SIZE, DIFFICULTY_PERCENT)
 
 function startNewGame() {
     const startGame = prompt('Do you want to start the game? (y/n): ')
